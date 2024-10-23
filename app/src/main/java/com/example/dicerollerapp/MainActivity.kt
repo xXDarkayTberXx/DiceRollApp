@@ -1,22 +1,21 @@
 package com.example.dicerollerapp
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var btnRoll: AppCompatButton
-    private lateinit var tvNumber: TextView
+    private lateinit var diceImage : ImageView
 
     private fun initComponents(){
         btnRoll = findViewById(R.id.btnRoll)
-        tvNumber = findViewById(R.id.tvNumber)
+        diceImage = findViewById(R.id.diceImage)
     }
 
     private fun initListeners(){
@@ -29,7 +28,18 @@ class MainActivity : AppCompatActivity() {
     private fun rollDice() {
         val dado6caras = Dice(6)
         val diceRoll = dado6caras.roll()
-        tvNumber.text = diceRoll.toString()
+        changeDiceImage(diceRoll)
+    }
+
+    private fun changeDiceImage(diceRoll: Int) {
+        when (diceRoll) {
+            1 -> diceImage.setImageResource(R.drawable.dice_one_svgrepo_com)
+            2 -> diceImage.setImageResource(R.drawable.dice_two_svgrepo_com)
+            3 -> diceImage.setImageResource(R.drawable.dice_three_svgrepo_com)
+            4 -> diceImage.setImageResource(R.drawable.dice_four_svgrepo_com)
+            5 -> diceImage.setImageResource(R.drawable.dice_five_svgrepo_com)
+            6 -> diceImage.setImageResource(R.drawable.dice_six_svgrepo_com)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,5 +49,4 @@ class MainActivity : AppCompatActivity() {
         initComponents()
         initListeners()
     }
-
 }
