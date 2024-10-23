@@ -1,5 +1,6 @@
 package com.example.dicerollerapp
 
+import android.media.Image
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,33 +13,42 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var btnRoll: AppCompatButton
     private lateinit var diceImage : ImageView
+    private lateinit var diceImage2 : ImageView
 
     private fun initComponents(){
         btnRoll = findViewById(R.id.btnRoll)
         diceImage = findViewById(R.id.diceImage)
+        diceImage2 = findViewById(R.id.diceImage2)
     }
 
     private fun initListeners(){
         btnRoll.setOnClickListener(){
-            Toast.makeText(this, "Dice Rolled!", Toast.LENGTH_LONG).show()
-            rollDice()
+            Toast.makeText(this, "Dices Rolled!", Toast.LENGTH_LONG).show()
+            rollDiceOne()
+            rollDiceTwo()
         }
     }
 
-    private fun rollDice() {
+    private fun rollDiceOne() {
         val dado6caras = Dice(6)
         val diceRoll = dado6caras.roll()
-        changeDiceImage(diceRoll)
+        changeDiceImage(diceImage, diceRoll)
     }
 
-    private fun changeDiceImage(diceRoll: Int) {
+    private fun rollDiceTwo() {
+        val dado6caras2 = Dice(6)
+        val diceRoll = dado6caras2.roll()
+        changeDiceImage(diceImage2, diceRoll)
+    }
+
+    private fun changeDiceImage(diceImageN: ImageView,diceRoll: Int) {
         when (diceRoll) {
-            1 -> diceImage.setImageResource(R.drawable.dice_one_svgrepo_com)
-            2 -> diceImage.setImageResource(R.drawable.dice_two_svgrepo_com)
-            3 -> diceImage.setImageResource(R.drawable.dice_three_svgrepo_com)
-            4 -> diceImage.setImageResource(R.drawable.dice_four_svgrepo_com)
-            5 -> diceImage.setImageResource(R.drawable.dice_five_svgrepo_com)
-            6 -> diceImage.setImageResource(R.drawable.dice_six_svgrepo_com)
+            1 -> diceImageN.setImageResource(R.drawable.dice_one_svgrepo_com)
+            2 -> diceImageN.setImageResource(R.drawable.dice_two_svgrepo_com)
+            3 -> diceImageN.setImageResource(R.drawable.dice_three_svgrepo_com)
+            4 -> diceImageN.setImageResource(R.drawable.dice_four_svgrepo_com)
+            5 -> diceImageN.setImageResource(R.drawable.dice_five_svgrepo_com)
+            6 -> diceImageN.setImageResource(R.drawable.dice_six_svgrepo_com)
         }
     }
 
